@@ -26,13 +26,13 @@ namespace AtmInternational.Hardware
 
                 }).Build();
 
-            //using var serviceScope = host.Services.CreateScope();
-            //{
-            //    var services = serviceScope.ServiceProvider;
+            using var serviceScope = host.Services.CreateScope();
+            {
+                var services = serviceScope.ServiceProvider;
 
-            //    var mainWindow = services.GetRequiredService<MainWindow>();
-            //    mainWindow.Show();
-            //}
+                var mainWindow = services.GetRequiredService<MainWindow>();
+                mainWindow.Show();
+            }
         }
         
     }

@@ -9,9 +9,77 @@
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
         >
-    <Grid>
-        <materialDesign:Card Padding="32" Margin="16">
-            <TextBlock Style="{DynamicResource MaterialDesignHeadline1TextBlock}">My First Material Design App</TextBlock>
-        </materialDesign:Card>
-    </Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="b2v" />
+                    <!--<SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#7892BA"/>
+                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#9AA1B3"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#7892BA"/>
+                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#657391"/>
+                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
+                    --><!-- accent --><!--
+                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#657391"/>
+                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"/>-->
+                </ResourceDictionary>
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Blue" />
+
+<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <StackPanel>
+        <TextBlock Style="{DynamicResource MaterialDesignHeadline1TextBlock}">My First Material Design App</TextBlock>
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline1TextBlock}">
+            Light 96sp
+        </TextBlock>
+        <TextBlock
+            Style="{StaticResource MaterialDesignHeadline2TextBlock}">
+            Light 60sp
+        </TextBlock>
+        <TextBlock>hi</TextBlock>
+        <Button
+            Style="{StaticResource MaterialDesignRaisedLightButton}"
+            Width="100"
+            ToolTip="Resource name: MaterialDesignRaisedLightButton"
+            >
+            _LIGHT
+
+        </Button>
+
+
+        <StackPanel
+            Orientation="Horizontal"
+            Margin="4">
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="True"
+                Content="FIRST" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="False"
+                Content="SECOND" />
+            <RadioButton
+                Style="{StaticResource MaterialDesignTabRadioButton}"
+                Margin="4"
+                IsChecked="False"
+                IsEnabled="False"
+                Content="THIRD" />
+        </StackPanel>
+
+        <Button
+            Style="{StaticResource MaterialDesignFloatingActionAccentButton}"
+            ToolTip="MaterialDesignFloatingActionAccentButton">
+            <materialDesign:PackIcon
+                Kind="Alarm"
+                Height="24"
+                Width="24" />
+        </Button>
+    </StackPanel>
 </Window>
