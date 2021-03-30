@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using AtmInternational.Hardware.ViewModels;
 
 namespace AtmInternational.Hardware
 {
@@ -10,6 +11,7 @@ namespace AtmInternational.Hardware
         public MainWindow()
         {
             InitializeComponent();
+            
         }
     }
 }
