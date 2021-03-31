@@ -3,26 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:components="clr-namespace:AtmInternational.Hardware.Components"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{DynamicResource MaterialDesignPaper}"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="14"
         FontFamily="{materialDesign:MaterialDesignFont}"
+        Width="1200"
+        Height="800"
+        Title=" Bank ATM"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        Icon="/Resources/Coin.png"
         >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <BooleanToVisibilityConverter x:Key="b2v" />
-                    <!--<SolidColorBrush x:Key="PrimaryHueLightBrush" Color="#7892BA"/>
-                    <SolidColorBrush x:Key="PrimaryHueLightForegroundBrush" Color="#9AA1B3"/>
-                    <SolidColorBrush x:Key="PrimaryHueMidBrush" Color="#7892BA"/>
-                    <SolidColorBrush x:Key="PrimaryHueMidForegroundBrush" Color="#FFFFFF"/>
-                    <SolidColorBrush x:Key="PrimaryHueDarkBrush" Color="#657391"/>
-                    <SolidColorBrush x:Key="PrimaryHueDarkForegroundBrush" Color="#FFFFFF"/>
-                    --><!-- accent --><!--
-                    <SolidColorBrush x:Key="SecondaryAccentBrush" Color="#657391"/>
-                    <SolidColorBrush x:Key="SecondaryAccentForegroundBrush" Color="#FFFFFF"/>-->
                 </ResourceDictionary>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Blue" />
 
@@ -31,8 +29,86 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <StackPanel>
-        <TextBlock Style="{DynamicResource MaterialDesignHeadline1TextBlock}">My First Material Design App</TextBlock>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <DockPanel 
+            Grid.Row="0"
+            Background="#d3d3d3"
+            LastChildFill="False"
+           >
+
+            <Image DockPanel.Dock="Left" 
+                   Source="/Resources/BankLogo.png"
+                   Width="445" 
+                   Margin="30 0"/>
+
+            <StackPanel DockPanel.Dock="Right"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Stretch">
+
+                <StackPanel  Margin="0 20">
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline6TextBlock}"
+                               HorizontalAlignment="Right"
+                    > Coin Balance</TextBlock>
+                    <TextBlock Style="{DynamicResource MaterialDesignHeadline2TextBlock}"
+                               HorizontalAlignment="Right"
+                               >25</TextBlock>
+                </StackPanel>
+
+
+                <Viewbox Height="100" HorizontalAlignment="Right" Margin="13">
+                    <components:ImageSequencer SpriteFrameCount="6" 
+                                               SpriteHeight="150" 
+                                               SpriteWidth="150" 
+                                               Interval="100"
+                                               ImageUri="pack://application:,,,/AtmInternational.Hardware;component/Resources/CoinSprite.png" />
+
+                </Viewbox>
+
+
+            </StackPanel>
+
+
+</DockPanel>
+        <StackPanel 
+            Grid.Row="1"
+            Background="#f8f9fa"
+            HorizontalAlignment="Center">
+            <StackPanel
+                Orientation="Horizontal"
+                Margin="4">
+                <RadioButton
+                    Style="{StaticResource MaterialDesignTabRadioButton}"
+                    Margin="4"
+                    IsChecked="True"
+                    Content="DEPOSIT" />
+                <RadioButton
+                    Style="{StaticResource MaterialDesignTabRadioButton}"
+                    Margin="4"
+                    IsChecked="False"
+                    Content="WITHDRAWAL" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel 
+            Grid.Row="2"
+            Background="White">
+
+            <components:Keypad></components:Keypad>
+
+
+        </StackPanel>
+
+
+
+        <!--<TextBlock Style="{DynamicResource MaterialDesignHeadline1TextBlock}">My First Material Design App</TextBlock>
         <TextBlock
             Style="{StaticResource MaterialDesignHeadline1TextBlock}">
             Light 96sp
@@ -80,6 +156,6 @@
                 Kind="Alarm"
                 Height="24"
                 Width="24" />
-        </Button>
-    </StackPanel>
+        </Button>-->
+    </Grid>
 </Window>
