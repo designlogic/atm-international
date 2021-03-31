@@ -16,19 +16,6 @@
         WindowStartupLocation="CenterScreen"
         Icon="/Resources/Coin.png"
         >
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <BooleanToVisibilityConverter x:Key="b2v" />
-                </ResourceDictionary>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="Indigo" SecondaryColor="Blue" />
-
-<ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
 
         <Grid.RowDefinitions>
@@ -85,12 +72,12 @@
                 Orientation="Horizontal"
                 Margin="4">
                 <RadioButton
-                    Style="{StaticResource MaterialDesignTabRadioButton}"
+                    Style="{DynamicResource MaterialDesignTabRadioButton}"
                     Margin="4"
                     IsChecked="True"
                     Content="DEPOSIT" />
                 <RadioButton
-                    Style="{StaticResource MaterialDesignTabRadioButton}"
+                    Style="{DynamicResource MaterialDesignTabRadioButton}"
                     Margin="4"
                     IsChecked="False"
                     Content="WITHDRAWAL" />
@@ -102,7 +89,6 @@
             Background="White">
 
             <components:Keypad></components:Keypad>
-
 
         </StackPanel>
 
