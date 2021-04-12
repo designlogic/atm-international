@@ -88,11 +88,15 @@
             Grid.Row="2"
             Background="White">
 
+            <StackPanel Orientation="Horizontal">
 
-            <components:SlotMachineWheel SpriteFrameCount="6" 
-                                         SpriteHeight="150" 
-                                         SpriteWidth="150" 
-                                         ImageUri="pack://application:,,,/AtmInternational.Hardware;component/Resources/SlotSymbols.png" />
+                <components:SlotMachineWheel x:Name="Wheel1" />
+                <components:SlotMachineWheel x:Name="Wheel2"/>
+                <components:SlotMachineWheel x:Name="Wheel3"/>
+
+            </StackPanel>
+
+            <Button Click="Spin">Spin</Button>
 
             <components:Keypad></components:Keypad>
 

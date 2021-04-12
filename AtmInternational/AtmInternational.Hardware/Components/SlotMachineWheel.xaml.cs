@@ -29,28 +29,35 @@ namespace AtmInternational.Hardware.Components
 
         private string pName = "test";
 
-        public string Name
+        public string Test
         {
             get => pName;
-            set => OnPropertyChanged(pName);
+            set
+            {
+                pName = value;
+                OnPropertyChanged();
+            }
         }
-        
+
         private DispatcherTimer updateImageTimer;
-        public int currentFrameIndex;
+        private int currentFrameIndex;
         private readonly CroppedBitmap croppedBitmap;
         private List<CroppedBitmap> frames = new List<CroppedBitmap>();
         private Random random = new Random();
 
-        public int SpriteWidth { get; set; } = 0;
-        public int SpriteHeight { get; set; } = 0;
-        public int SpriteFrameCount { get; set; } = 0;
-        public int Interval { get; set; } = 700;
-        public Uri ImageUri { get; set; }
+        private int SpriteWidth { get; set; } = 150;
+        private int SpriteHeight { get; set; } = 150;
+        private int SpriteFrameCount { get; set; } = 6;
+        private int Interval { get; set; } = 150;
+        private Uri ImageUri { get; set; } = new Uri("pack://application:,,,/AtmInternational.Hardware;component/Resources/SlotSymbols.png");
+        
+        private SlotWheelSymbol SlotWheelSymbol { get; set; }
 
 
-        public ICommand SpinCommand { get; }
+        private int totalSpinCount = 5;
+        private int currentSpinCount = 0;
 
-
+        
         //private ICommand _clickCommand;
         //public ICommand ClickCommand
         //{
@@ -64,7 +71,6 @@ namespace AtmInternational.Hardware.Components
         {
             InitializeComponent();
             this.DataContext = this;
-            SpinCommand = new CommandHandler(Spin, () => true);
         }
 
         private void CreateFrames()
@@ -97,12 +103,14 @@ namespace AtmInternational.Hardware.Components
         public void Play()
         {
             currentFrameIndex = 0;
+            currentSpinCount = 0;
             updateImageTimer.Start();
         }
 
         public void Stop()
         {
             updateImageTimer.Stop();
+            ShowFrame((int)SlotWheelSymbol);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -119,26 +127,36 @@ namespace AtmInternational.Hardware.Components
 
         private void ShowNextRandomFrame()
         {
-            Name = currentFrameIndex.ToString();
-            var index = random.Next(0, SpriteFrameCount);
-            if (index == currentFrameIndex)
+            if (currentSpinCount >= totalSpinCount)
             {
-                ShowNextRandomFrame();
+                Stop();
+                return;
             }
             
-            image.Source = frames[index];
-            currentFrameIndex = index;
+            var randomIndex = random.Next(0, SpriteFrameCount);
+            while (randomIndex == currentFrameIndex)
+            {
+                randomIndex = random.Next(0, SpriteFrameCount);
+            }
+            
+            Test = randomIndex.ToString();
+
+            ShowFrame(randomIndex);
         }
 
         private void ShowFrame(int frameIndex)
         {
             image.Source = frames[frameIndex];
-
+            currentFrameIndex = frameIndex;
+            currentSpinCount++;
         }
 
-        private void Spin()
+        public void Spin(SlotWheelSymbol slotWheelSymbol)
         {
-            updateImageTimer.Start();
+            SlotWheelSymbol = slotWheelSymbol;
+            Play();
+           //updateImageTimer.Start();
+            //Test = "test" + DateTime.Now.Millisecond.ToString();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
